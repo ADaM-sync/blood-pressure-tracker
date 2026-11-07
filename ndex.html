@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#EAF4EC">
+  <meta name="description" content="Personal Blood Pressure Tracker">
+  <title>BP Tracker</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+  <main class="app">
+
+    <header class="header">
+      <div>
+        <h1>BP Tracker</h1>
+        <p>Your daily health journal</p>
+      </div>
+      <div class="heart">♡</div>
+    </header>
+
+    <section class="date-card">
+      <p>TODAY</p>
+      <h2 id="todayDate">Loading...</h2>
+    </section>
+
+    <section class="entry-card">
+      <h2>New reading</h2>
+
+      <label for="systolic">Systolic (SYS)</label>
+      <input id="systolic" type="number" inputmode="numeric"
+             placeholder="120">
+
+      <label for="diastolic">Diastolic (DIA)</label>
+      <input id="diastolic" type="number" inputmode="numeric"
+             placeholder="80">
+
+      <label for="pulse">Pulse (BPM)</label>
+      <input id="pulse" type="number" inputmode="numeric"
+             placeholder="72">
+
+      <label for="readingTime">Reading time</label>
+      <div class="time-row">
+        <button type="button" id="minusHour">− 1h</button>
+        <input id="readingTime" type="time">
+        <button type="button" id="plusHour">+ 1h</button>
+      </div>
+
+      <label for="customDate">Reading date</label>
+      <input id="customDate" type="date">
+
+      <label for="notes">Notes (optional)</label>
+      <textarea id="notes" placeholder="Any notes..."></textarea>
+
+      <button class="save-button" id="saveButton">
+        Save reading
+      </button>
+    </section>
+
+    <section class="average-card">
+      <p>WEEKLY AVERAGE</p>
+      <h2 id="weeklyAverage">-- / --</h2>
+      <span>SYS / DIA · Last 7 days</span>
+    </section>
+
+    <section class="history-card">
+      <div class="section-heading">
+        <h2>Recent readings</h2>
+        <span id="readingCount">0 readings</span>
+      </div>
+      <div id="history">
+        <p class="empty">Your readings will appear here.</p>
+      </div>
+    </section>
+
+    <footer>
+      Personal health journal · Your data stays on your device
+    </footer>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
