@@ -317,3 +317,45 @@ textarea {
   border: 1px solid #DCE9DE;
 }
 
+
+/* FORCE FOOTER BUTTON DESIGN */
+
+.app-footer .footer-links {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 12px !important;
+  margin-top: 16px !important;
+  flex-wrap: wrap !important;
+}
+
+.app-footer a.footer-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  padding: 12px 17px !important;
+  border-radius: 12px !important;
+  text-decoration: none !important;
+  font-family: inherit !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  border: 1px solid transparent !important;
+  box-shadow: 0 2px 6px rgba(36, 92, 60, 0.08) !important;
+}
+
+.app-footer a.footer-link.coffee {
+  background-color: #39865A !important;
+  color: #FFFFFF !important;
+  border-color: #39865A !important;
+}
+
+.app-footer a.footer-link.email {
+  background-color: #FFFFFF !important;
+  color: #245C3C !important;
+  border-color: #DCE9DE !important;
+}
+
+.app-footer a.footer-link:hover {
+  opacity: 0.85 !important;
+}
