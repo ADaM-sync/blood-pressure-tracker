@@ -15,9 +15,7 @@ Reading history and notes.
 Offline support.
 Installable as a Progressive Web App (PWA).
 Local storage using IndexedDB.
-Screenshots
 
-Screenshots coming soon.
 
 Technology
 HTML
