@@ -17,12 +17,24 @@ Record daily readings, monitor weekly averages, and keep your health history in 
 - Automatic weekly averages
 - Reading history and notes
 - Offline support
-- Installable PWA
+- Installable Progressive Web App (PWA)
 - Local storage using IndexedDB
 
-### Screenshots
+### Installation
 
-*Coming soon.*
+**iOS (iPhone)**
+
+1. Open BP Tracker in Safari.
+2. Tap the Share button.
+3. Select **Add to Home Screen**.
+4. Tap Add.
+
+**Android**
+
+1. Open BP Tracker in Chrome.
+2. Open the browser menu.
+3. Select **Install app** or **Add to Home screen**.
+4. Follow the installation instructions.
 
 ### Built With
 
