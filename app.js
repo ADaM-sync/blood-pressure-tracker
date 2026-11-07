@@ -359,3 +359,17 @@ async function initializeApp() {
 }
 
 initializeApp();
+
+
+
+
+// Register offline support
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("./service-worker.js")
+      .then(() => console.log("Offline support enabled"))
+      .catch(error => console.error("Service worker error:", error));
+  });
+}
+
