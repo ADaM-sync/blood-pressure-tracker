@@ -256,3 +256,64 @@ textarea {
     padding-top: 35px;
   }
 }
+
+
+
+
+
+
+/* =========================
+   ADAM'S FOOTER
+   ========================= */
+
+.app-footer {
+  text-align: center;
+  padding: 15px 5px 30px;
+}
+
+.app-footer p {
+  font-size: 11px;
+  color: var(--muted);
+  margin: 6px 0;
+}
+
+.app-footer .creator {
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--dark-green);
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.footer-link {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 11px 15px;
+  border-radius: 12px;
+  transition: opacity 0.2s;
+}
+
+.footer-link:hover {
+  opacity: 0.8;
+}
+
+.footer-link.coffee {
+  background: #39865A;
+  color: #FFFFFF;
+}
+
+.footer-link.email {
+  background: #EAF4EC;
+  color: #245C3C;
+  border: 1px solid #DCE9DE;
+}
+
