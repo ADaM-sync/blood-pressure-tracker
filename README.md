@@ -36,12 +36,10 @@ Support ❤️
 
 If you find this project useful, consider buying me a coffee!
 
-☕ Buy Me a Coffee
+☕ Buy Me a Coffee: https://buymeacoffee.com/adamsync
 
-Contact
+Contact: adam.16ma9@aleeas.com
 
 Created with ❤️ by Adam
-
-Email me
 
 BP Tracker is a personal health journal, not a medical diagnostic tool.
