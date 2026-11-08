@@ -1,7 +1,7 @@
 
 # BP Tracker 🌿
 
-A simple, minimal blood pressure tracker.
+A simple, minimal blood pressure tracker PWA App.
 
 Record daily readings, monitor weekly averages, and keep your health history in one place.
 
