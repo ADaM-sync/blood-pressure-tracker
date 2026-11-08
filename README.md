@@ -1,69 +1,80 @@
-
 # BP Tracker 🌿
 
-A simple, minimal blood pressure tracker PWA App.
+A simple, privacy-first blood pressure tracker for everyday use.
 
-Record daily readings, monitor weekly averages, and keep your health history in one place.
+Record your readings, review weekly averages, and keep your health history in one place without creating an account.
 
-[**Open BP Tracker →**](https://adam-sync.github.io/blood-pressure-tracker/)
+**Your readings. Your device. Your privacy.**
 
----
+**[Open BP Tracker →](https://adam-sync.github.io/blood-pressure-tracker/)**
 
-### Features
+## 🚀 Features
 
-- Daily blood pressure and pulse tracking
-- Custom date and time selection
-- Quick ±1 hour time adjustment
-- Automatic weekly averages
-- Reading history and notes
-- Offline support
-- Installable Progressive Web App (PWA)
-- Local storage using IndexedDB
+### 🩺 Daily readings
+Record systolic and diastolic blood pressure, pulse, and notes in a simple interface.
 
-### Installation
+### 🕒 Flexible date and time
+Choose when a reading was taken, with quick ±1 hour adjustments.
 
-**iOS (iPhone)**
+### 📊 Weekly averages and history
+Review automatic weekly averages and browse your previous readings and notes.
+
+### 🔒 Local storage
+Your readings are stored on your device using IndexedDB. No account, cloud database, or automatic data uploads.
+
+### 📱 Installable and offline-ready
+Use BP Tracker in your browser or add it to your home screen as a Progressive Web App (PWA). Open it online first so it can cache the app for offline use.
+
+## 🛠 Installation
+
+Use **[BP Tracker](https://adam-sync.github.io/blood-pressure-tracker/)** directly in your browser, or install it for quick access.
+
+### iPhone
 
 1. Open BP Tracker in Safari.
-2. Tap the Share button.
+2. Tap the **Share** button.
 3. Select **Add to Home Screen**.
-4. Tap Add.
+4. Tap **Add**.
 
-**Android**
+### Android
 
 1. Open BP Tracker in Chrome.
 2. Open the browser menu.
 3. Select **Install app** or **Add to Home screen**.
 4. Follow the installation instructions.
 
-### Built With
+## 📓 Usage
 
-HTML · CSS · JavaScript · IndexedDB · PWA
+1. Enter your blood pressure and pulse readings.
+2. Set the date and time the reading was taken.
+3. Add any notes you want to keep with the reading.
+4. Save the reading and review your history and weekly averages.
 
-### Privacy
+## 🧠 Philosophy
 
-Your readings are stored locally on your device.
+BP Tracker is built around privacy, simplicity, and ownership. A straightforward place to keep your readings without accounts or a cloud database.
 
-- No account required
-- No cloud database
-- No automatic data uploads
+Your data stays in the browser and on the device where you enter it. It does not automatically sync between devices. Keep backups of important readings: clearing browser storage may erase your history.
 
-Remember to back up your data. Clearing browser storage may erase your readings.
+## 🧰 Built With
+
+HTML · CSS · JavaScript · IndexedDB · Service Worker · PWA
+
+## 🙌 Support Development
+
+If BP Tracker helps you, consider supporting the project:
+
+- ⭐ Star the repository if you find it useful.
+- ☕ [Buy Me a Coffee](https://buymeacoffee.com/adamsync)
+
+Your support helps improve the project and build more simple, privacy-focused tools.
+
+## ✉️ Contact
+
+[Contact ADaM](mailto:adam.16ma9@aleeas.com)
+
+Made with ❤️ by [ADaM](https://github.com/ADaM-sync)
 
 ---
 
-### Support ❤️
-
-If you find this project useful, consider buying me a coffee!
-
-[☕ Buy Me a Coffee](https://buymeacoffee.com/adamsync)
-
-### Contact
-
-**Created with ❤️ by Adam**
-
-[✉️ Contact Adam](mailto:adam.16ma9@aleeas.com)
-
----
-
-<sub>BP Tracker is a personal health journal, not a medical diagnostic tool.</sub>
+BP Tracker is a personal health journal, not a medical diagnostic tool.
