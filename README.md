@@ -65,7 +65,10 @@ HTML · CSS · JavaScript · IndexedDB · Service Worker · PWA
 If BP Tracker helps you, consider supporting the project:
 
 - ⭐ Star the repository if you find it useful.
-- ☕ [Buy Me a Coffee](https://buymeacoffee.com/adamsync)
+
+<a href="https://buymeacoffee.com/adamsync" target="_blank">
+  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me a Coffee" style="height: 60px; width: 217px;">
+</a>
 
 Your support helps improve the project and build more simple, privacy-focused tools.
 
