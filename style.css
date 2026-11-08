@@ -73,7 +73,8 @@ body {
 .date-card,
 .entry-card,
 .average-card,
-.history-card {
+.history-card,
+.backup-card {
   background: var(--white);
   border-radius: 20px;
   padding: 20px;
@@ -99,7 +100,8 @@ body {
 /* SECTION HEADINGS */
 
 .entry-card h2,
-.history-card h2 {
+.history-card h2,
+.backup-card h2 {
   font-size: 17px;
   color: var(--dark-green);
   margin: 0 0 20px;
@@ -189,6 +191,62 @@ button {
 }
 
 /* WEEKLY AVERAGE */
+
+.backup-card p {
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 12px 0;
+}
+
+.backup-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.backup-actions button {
+  flex: 1 1 150px;
+  min-height: 48px;
+  padding: 12px;
+  border: 1px solid var(--green);
+  border-radius: 12px;
+  background: var(--soft-green);
+  color: var(--dark-green);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.backup-actions button:first-child {
+  background: var(--green);
+  color: white;
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+.backup-actions button:focus-visible {
+  outline: 3px solid var(--dark-green);
+  outline-offset: 3px;
+}
+
+.backup-card .backup-hint {
+  font-size: 12px;
+  color: #52745D;
+}
+
+#backupStatus {
+  overflow-wrap: anywhere;
+  font-weight: 600;
+}
+
+#backupStatus[data-error="true"] {
+  color: #A12B2B;
+}
+
+[hidden] { display: none !important; }
 
 .average-card {
   background: var(--dark-green);
@@ -359,3 +417,4 @@ textarea {
 .app-footer a.footer-link:hover {
   opacity: 0.85 !important;
 }
+

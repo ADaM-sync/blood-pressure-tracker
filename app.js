@@ -96,6 +96,166 @@ function deleteFromDatabase(id) {
 
 // ---------- TIME CONTROLS ----------
 
+// ---------- BACKUP & TRANSFER ----------
+
+const BACKUP_VERSION = 1;
+const MAX_BACKUP_BYTES = 10 * 1024 * 1024;
+const MAX_BACKUP_READINGS = 50000;
+
+function normalizeBackupReading(reading, index) {
+  const invalid = () => {
+    throw new Error(`Reading ${index + 1} is invalid. No readings were imported.`);
+  };
+  if (!reading || typeof reading !== "object" || Array.isArray(reading)) invalid();
+  const { date, time, systolic, diastolic, pulse, notes, createdAt } = reading;
+  if (typeof date !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(date)) invalid();
+  const parsedDate = new Date(`${date}T00:00:00Z`);
+  if (!Number.isFinite(parsedDate.getTime()) || parsedDate.toISOString().slice(0, 10) !== date) invalid();
+  if (typeof time !== "string" || !/^([01]\d|2[0-3]):[0-5]\d$/.test(time)) invalid();
+  if (!Number.isInteger(systolic) || systolic < 50 || systolic > 300 ||
+      !Number.isInteger(diastolic) || diastolic < 30 || diastolic > 200 ||
+      !Number.isInteger(pulse) || pulse < 20 || pulse > 250) invalid();
+  if (typeof notes !== "string" || typeof createdAt !== "string" ||
+      !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/.test(createdAt) ||
+      !Number.isFinite(Date.parse(createdAt)) || new Date(createdAt).toISOString() !== createdAt) invalid();
+  // Device-local IDs must never be copied: another device can use the same ID.
+  return { date, time, systolic, diastolic, pulse, notes, createdAt };
+}
+
+function parseBackup(text) {
+  let backup;
+  try {
+    backup = JSON.parse(text.replace(/^\uFEFF/, ""));
+  } catch {
+    throw new Error("This file is not valid JSON. Choose a BP Tracker export file.");
+  }
+  if (!backup || backup.app !== "BPTracker" || backup.version !== BACKUP_VERSION ||
+      !Array.isArray(backup.readings)) {
+    throw new Error("Unsupported backup. Choose a version 1 BP Tracker export file.");
+  }
+  if (backup.readings.length > MAX_BACKUP_READINGS) {
+    throw new Error("This backup has too many readings (maximum 50,000).");
+  }
+  return backup.readings.map(normalizeBackupReading);
+}
+
+function readingFingerprint(reading) {
+  return JSON.stringify([
+    reading.date, reading.time, reading.systolic, reading.diastolic,
+    reading.pulse, reading.notes, reading.createdAt
+  ]);
+}
+
+function mergeBackupReadings(readings) {
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction(STORE_NAME, "readwrite");
+    const store = transaction.objectStore(STORE_NAME);
+    const request = store.getAll();
+    let added = 0;
+    let skipped = 0;
+    request.onsuccess = () => {
+      const seen = new Set(request.result.map(readingFingerprint));
+      for (const reading of readings) {
+        const fingerprint = readingFingerprint(reading);
+        if (seen.has(fingerprint)) {
+          skipped++;
+        } else {
+          store.add(reading);
+          seen.add(fingerprint);
+          added++;
+        }
+      }
+    };
+    // One transaction: failed writes roll back the entire import.
+    transaction.oncomplete = () => resolve({ added, skipped });
+    transaction.onerror = () => reject(transaction.error);
+    transaction.onabort = () => reject(transaction.error || new Error("Import aborted."));
+  });
+}
+
+function setBackupStatus(message, isError = false) {
+  const status = document.getElementById("backupStatus");
+  status.textContent = message;
+  status.dataset.error = String(isError);
+}
+
+function setBackupBusy(busy) {
+  document.getElementById("exportButton").disabled = busy;
+  document.getElementById("importButton").disabled = busy;
+}
+
+document.getElementById("exportButton").addEventListener("click", async () => {
+  setBackupBusy(true);
+  try {
+    const readings = (await getAllReadings()).map(normalizeBackupReading);
+    const text = JSON.stringify({
+      app: "BPTracker", version: BACKUP_VERSION,
+      exportedAt: new Date().toISOString(), readings
+    }, null, 2);
+    const blob = new Blob([text], { type: "application/json" });
+    if (blob.size > MAX_BACKUP_BYTES || readings.length > MAX_BACKUP_READINGS) {
+      throw new Error("This database exceeds the 10 MB / 50,000 reading backup limit.");
+    }
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `bp-tracker-backup-${localDate()}-${localTime().replace(":", "")}.json`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    // Allow mobile browsers time to start the download before releasing it.
+    setTimeout(() => URL.revokeObjectURL(url), 60000);
+    setBackupStatus(`Backup ready: ${readings.length} reading(s). Save the file, then import it on your other device.`);
+  } catch (error) {
+    console.error(error);
+    setBackupStatus(error.message || "Could not export readings. Please try again.", true);
+  } finally {
+    setBackupBusy(false);
+  }
+});
+
+const importFile = document.getElementById("importFile");
+document.getElementById("importButton").addEventListener("click", () => importFile.click());
+
+importFile.addEventListener("change", async () => {
+  const file = importFile.files[0];
+  if (!file) return;
+  setBackupBusy(true);
+  let committed = false;
+  try {
+    if (file.size > MAX_BACKUP_BYTES) {
+      throw new Error("This file is too large. Choose a backup smaller than 10 MB.");
+    }
+    const readings = parseBackup(await file.text());
+    if (!readings.length) {
+      setBackupStatus("This backup is empty. Your existing readings are unchanged.");
+      return;
+    }
+    if (!confirm(`Import ${readings.length} reading(s)? Existing readings will be kept and exact duplicates skipped.`)) {
+      setBackupStatus("Import cancelled. Your existing readings are unchanged.");
+      return;
+    }
+    let result;
+    try {
+      result = await mergeBackupReadings(readings);
+    } catch (error) {
+      console.error(error);
+      throw new Error("Could not import the backup. No readings were added. Check available device storage and try again.");
+    }
+    committed = true;
+    await refreshApp();
+    setBackupStatus(`Import complete: ${result.added} added, ${result.skipped} duplicate(s) skipped.`);
+  } catch (error) {
+    console.error(error);
+    setBackupStatus(committed
+      ? "Your readings were imported, but the display could not refresh. Reopen the app to see them."
+      : (error.message || "Could not read this backup. Your existing readings are unchanged."), true);
+  } finally {
+    importFile.value = "";
+    setBackupBusy(false);
+  }
+});
+
 const timeInput = document.getElementById("readingTime");
 
 function adjustTime(hours) {
@@ -351,6 +511,7 @@ async function initializeApp() {
   try {
     await openDatabase();
     await refreshApp();
+    setBackupBusy(false);
     console.log("BP Tracker database ready.");
   } catch (error) {
     console.error(error);
@@ -372,4 +533,5 @@ if ("serviceWorker" in navigator) {
       .catch(error => console.error("Service worker error:", error));
   });
 }
+
 

@@ -77,8 +77,20 @@
     </section>
 
 
+    <section class="backup-card" aria-labelledby="backupHeading">
+      <h2 id="backupHeading">Backup & transfer</h2>
+      <p>Export all your readings, then import the file on another device. Imports add new readings and skip exact duplicates.</p>
+      <div class="backup-actions">
+        <button type="button" id="exportButton" disabled>Export readings</button>
+        <button type="button" id="importButton" disabled>Import readings</button>
+      </div>
+      <input id="importFile" type="file" accept=".json,.txt,application/json,text/plain" hidden>
+      <p class="backup-hint">Readable JSON file · Manual transfer, no automatic sync. Backup files contain your readings and notes; keep them private.</p>
+      <p id="backupStatus" role="status" aria-live="polite"></p>
+    </section>
+
 <footer class="app-footer">
-  <p>Personal health journal · Your data stays on your device . ver1</p>
+  <p>Personal health journal · Your data stays on your device · v2</p>
 
   <p class="creator">
     Created with ❤️ by <strong>Adam</strong>
@@ -110,3 +122,4 @@
   <script src="app.js"></script>
 </body>
 </html>
+

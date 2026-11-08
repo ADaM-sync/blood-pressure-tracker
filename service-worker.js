@@ -1,5 +1,5 @@
 
-const CACHE_NAME = "bp-tracker-v1";
+const CACHE_NAME = "bp-tracker-v2";
 
 const APP_FILES = [
   "./",
@@ -24,7 +24,7 @@ self.addEventListener("activate", event => {
     caches.keys().then(keys =>
       Promise.all(
         keys
-          .filter(key => key !== CACHE_NAME)
+          .filter(key => key.startsWith("bp-tracker-") && key !== CACHE_NAME)
           .map(key => caches.delete(key))
       )
     )
@@ -63,3 +63,4 @@ self.addEventListener("fetch", event => {
     })
   );
 });
+

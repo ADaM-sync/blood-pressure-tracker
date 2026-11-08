@@ -22,6 +22,9 @@ Review automatic weekly averages and browse your previous readings and notes.
 ### 🔒 Local storage
 Your readings are stored on your device using IndexedDB. No account, cloud database, or automatic data uploads.
 
+### 📂 Backup and transfer
+Export all readings as a readable JSON file and import it on another device. Imports keep your existing readings, skip exact duplicates, and preserve dates, times, pulse, and notes.
+
 ### 📱 Installable and offline-ready
 Use BP Tracker in your browser or add it to your home screen as a Progressive Web App (PWA). Open it online first so it can cache the app for offline use.
 
@@ -49,6 +52,18 @@ Use **[BP Tracker](https://adam-sync.github.io/blood-pressure-tracker/)** direct
 2. Set the date and time the reading was taken.
 3. Add any notes you want to keep with the reading.
 4. Save the reading and review your history and weekly averages.
+
+## 📂 Transfer Between Devices
+
+1. Open **Backup & transfer** below your recent readings.
+2. Select **Export readings** and save the `.json` file.
+3. Transfer that file to your other device using a method you trust.
+4. Open BP Tracker on that device, select **Import readings**, and choose the file.
+5. Confirm the import. The app reports how many readings were added or skipped.
+
+Imports merge with existing readings; they never replace your database. Reimporting the same backup skips exact duplicates. Readings with different content are kept separately. This is manual transfer, not automatic sync; deleted readings can return if you import an older backup.
+
+Only BP Tracker version 1 backup files are accepted (up to 10 MB / 50,000 readings). Invalid files are rejected before importing, and database write failures roll back the whole import. Backup files are plain text, not encrypted, and contain your readings and notes. Keep them private.
 
 ## 🧠 Philosophy
 
@@ -81,3 +96,4 @@ Made with ❤️ by [ADaM](https://github.com/ADaM-sync)
 ---
 
 BP Tracker is a personal health journal, not a medical diagnostic tool.
+
