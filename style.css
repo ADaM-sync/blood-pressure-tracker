@@ -21,18 +21,18 @@
 }
 
 :root[data-theme="dark"] {
-  --background: #101C16;
-  --white: #1A2B21;
-  --green: #80C99B;
-  --dark-green: #BDE7CB;
-  --soft-green: #22382B;
-  --text: #E0F0E5;
-  --muted: #A6BBAE;
-  --border: #3D5747;
-  --button-text: #102619;
-  --average-background: #274D36;
-  --average-label: #D0E6D7;
-  --notes: #B4CEBD;
+  --background: #211B2E;
+  --white: #2E263F;
+  --green: #BCA5ED;
+  --dark-green: #E0D1FA;
+  --soft-green: #39304C;
+  --text: #F0EAF8;
+  --muted: #C3B6D5;
+  --border: #61516F;
+  --button-text: #261C38;
+  --average-background: #4A3866;
+  --average-label: #E3D6F3;
+  --notes: #D1C0E6;
   --error: #FFB2AC;
   color-scheme: dark;
 }
@@ -50,6 +50,27 @@ body {
                "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
+
+:root[data-theme="dark"] body {
+  background: radial-gradient(ellipse at top, #352A48 0, var(--background) 75%);
+  background-attachment: fixed;
+}
+
+.launch-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background: var(--background);
+  color: var(--dark-green);
+}
+
+.launch-screen img { width: 100px; height: 100px; border-radius: 24px; }
+.launch-screen strong { font-size: 26px; }
 
 .app {
   width: 100%;

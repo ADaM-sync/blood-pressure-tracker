@@ -84,8 +84,8 @@ for (w,h,ratio) in devices {
                     CTLineDraw(line,c)
                 }
             }
-            let media = "(device-width: \(w)px) and (device-height: \(h)px) and (-webkit-device-pixel-ratio: \(ratio)) and (orientation: \(orientation)) and (prefers-color-scheme: \(theme))"
-            links.append("  <link rel=\"apple-touch-startup-image\" href=\"\(file)\" media=\"\(media)\">")
+            let media = "(device-width: \(w)px) and (device-height: \(h)px) and (-webkit-device-pixel-ratio: \(ratio)) and (orientation: \(orientation))\(dark ? " and (prefers-color-scheme: dark)" : "")"
+            links.append("  <link rel=\"apple-touch-startup-image\" href=\"https://adam-sync.github.io/blood-pressure-tracker/\(file)?v=3.1\" media=\"\(media)\">")
         }
     }
 }

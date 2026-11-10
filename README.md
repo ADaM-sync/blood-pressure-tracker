@@ -42,7 +42,7 @@ Use **[BP Tracker](https://adam-sync.github.io/blood-pressure-tracker/)** direct
 3. Select **Add to Home Screen**.
 4. Tap **Add**.
 
-The app includes Apple touch icons and light/dark startup images for common iPhone and iPad screen sizes. Startup images follow the system appearance. If an existing Home Screen icon stays unchanged, export your readings first, then remove the Home Screen app and add it again from Safari. Import your backup if needed. Do not clear website data.
+The app includes Apple touch icons and light/dark startup images for common iPhone and iPad screen sizes. A short branded startup screen is also shown inside the installed app as a fallback when iOS skips its native launch image. If an existing Home Screen icon stays unchanged, export your readings first, then remove the Home Screen app and add it again from Safari. Import your backup if needed. Do not clear website data.
 
 ### Android
 
@@ -83,6 +83,7 @@ Your data stays in the browser and on the device where you enter it. It does not
 | Ver 1 | First version. |
 | Ver 2 | Added import and export. |
 | Ver 3 | Added dark mode and fixed the iOS icon; added iOS startup images. |
+| Ver 3.1 | Soft purple dark theme, refreshed iOS installation metadata, and a startup fallback. |
 
 ## 🧰 Built With
 

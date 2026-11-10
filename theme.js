@@ -9,7 +9,7 @@
   function applyTheme(theme) {
     document.documentElement.dataset.theme = theme;
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.content = theme === "dark" ? "#101C16" : "#EAF4EC";
+    if (meta) meta.content = theme === "dark" ? "#211B2E" : "#EAF4EC";
     const button = document.getElementById("themeToggle");
     if (button) {
       const dark = theme === "dark";

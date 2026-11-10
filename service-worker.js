@@ -1,18 +1,22 @@
 
-const CACHE_NAME = "bp-tracker-v3";
+const CACHE_NAME = "bp-tracker-v3.1";
 
 const APP_FILES = [
   "./",
   "./index.html",
-  "./style.css",
-  "./app.js",
-  "./theme.js",
+  "./style.css?v=3.1",
+  "./app.js?v=3.1",
+  "./theme.js?v=3.1",
+  "./ios-install.js?v=3.1",
+  "./apple-touch-icon.png?v=3.1",
+  "./apple-touch-icon-precomposed.png?v=3.1",
+  "./startup.png?v=3.1",
   "./icons/apple-touch-icon-180.png",
   "./icons/apple-touch-icon-167.png",
   "./icons/apple-touch-icon-152.png",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
-  "./manifest.json"
+  "./manifest.json?v=3.1"
 ];
 
 self.addEventListener("install", event => {
@@ -41,9 +45,30 @@ self.addEventListener("activate", event => {
 
 self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
+  if (new URL(event.request.url).origin !== self.location.origin) return;
+
+  // Read fresh installation metadata online, with the last good page offline.
+  // A cache-first HTML response can make Safari install an obsolete icon set.
+  if (event.request.mode === "navigate") {
+    event.respondWith((async () => {
+      const cache = await caches.open(CACHE_NAME);
+      try {
+        const response = await fetch(event.request);
+        if (response.ok) {
+          await cache.put(event.request, response.clone());
+          await cache.put("./index.html", response.clone());
+        }
+        return response;
+      } catch {
+        return await cache.match(event.request) || await cache.match("./index.html") ||
+          new Response("Please connect once to load BP Tracker.", { status: 503 });
+      }
+    })());
+    return;
+  }
 
   event.respondWith(
-    caches.match(event.request).then(cached => {
+    caches.open(CACHE_NAME).then(cache => cache.match(event.request)).then(cached => {
       if (cached) return cached;
 
       return fetch(event.request).then(response => {

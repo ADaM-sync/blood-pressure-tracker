@@ -2,7 +2,7 @@
   "name": "Blood Pressure Tracker",
   "short_name": "BP Tracker",
   "description": "Personal offline blood pressure tracker",
-  "start_url": "./",
+  "start_url": "./?v=3.1",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
@@ -13,13 +13,19 @@
       "src": "icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
   "id": "./"

@@ -22,7 +22,7 @@ function setup({saved=null,dark=false,blocked=false}={}) {
 test('first launch follows system and keeps following it until manually changed',()=>{
   const s=setup({dark:true});
   assert.equal(s.root.dataset.theme,'dark');
-  assert.equal(s.meta.content,'#101C16');
+  assert.equal(s.meta.content,'#211B2E');
   s.doc.DOMContentLoaded();
   assert.equal(s.button.attributes['aria-pressed'],'true');
   s.media.change({matches:false});
