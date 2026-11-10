@@ -1,11 +1,17 @@
 
-const CACHE_NAME = "bp-tracker-v2";
+const CACHE_NAME = "bp-tracker-v3";
 
 const APP_FILES = [
   "./",
   "./index.html",
   "./style.css",
   "./app.js",
+  "./theme.js",
+  "./icons/apple-touch-icon-180.png",
+  "./icons/apple-touch-icon-167.png",
+  "./icons/apple-touch-icon-152.png",
+  "./icons/icon-192.png",
+  "./icons/icon-512.png",
   "./manifest.json"
 ];
 

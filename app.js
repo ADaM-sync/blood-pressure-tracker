@@ -408,7 +408,7 @@ async function displayHistory(readings) {
   history.innerHTML = recent.map(reading => `
     <div style="
       padding: 13px 0;
-      border-bottom: 1px solid #E0EAE1;
+      border-bottom: 1px solid var(--border);
     ">
       <div style="
         display:flex;
@@ -416,7 +416,7 @@ async function displayHistory(readings) {
         align-items:center;
         gap:8px;
       ">
-        <strong style="color:#245C3C;font-size:17px">
+        <strong style="color:var(--dark-green);font-size:17px">
           ${reading.systolic} / ${reading.diastolic}
         </strong>
         <button
@@ -424,21 +424,21 @@ async function displayHistory(readings) {
           data-delete="${reading.id}"
           style="
             border:0;
-            background:#F4F8F4;
-            color:#829589;
+            background:var(--soft-green);
+            color:var(--muted);
             border-radius:8px;
             padding:7px 10px;
             cursor:pointer;
           "
         >Delete</button>
       </div>
-      <div style="color:#829589;font-size:12px;margin-top:5px">
+      <div style="color:var(--muted);font-size:12px;margin-top:5px">
         ${escapeHTML(formatDate(reading.date))}
         · ${escapeHTML(reading.time)}
         · Pulse ${reading.pulse} BPM
       </div>
       ${reading.notes ? `
-        <div style="font-size:12px;margin-top:6px;color:#52745D">
+        <div style="font-size:12px;margin-top:6px;color:var(--notes)">
           ${escapeHTML(reading.notes)}
         </div>
       ` : ""}

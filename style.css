@@ -12,6 +12,29 @@
   --text: #294536;
   --muted: #829589;
   --border: #E0EAE1;
+  --button-text: #FFFFFF;
+  --average-background: #245C3C;
+  --average-label: #C1D8C8;
+  --notes: #52745D;
+  --error: #A12B2B;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --background: #101C16;
+  --white: #1A2B21;
+  --green: #80C99B;
+  --dark-green: #BDE7CB;
+  --soft-green: #22382B;
+  --text: #E0F0E5;
+  --muted: #A6BBAE;
+  --border: #3D5747;
+  --button-text: #102619;
+  --average-background: #274D36;
+  --average-label: #D0E6D7;
+  --notes: #B4CEBD;
+  --error: #FFB2AC;
+  color-scheme: dark;
 }
 
 * {
@@ -20,7 +43,7 @@
 
 body {
   margin: 0;
-  padding: 20px 14px;
+  padding: max(20px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right)) max(20px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
   background: var(--background);
   color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont,
@@ -57,15 +80,22 @@ body {
   margin: 5px 0 0;
 }
 
-.heart {
-  width: 44px;
-  height: 44px;
-  background: white;
-  border-radius: 15px;
-  display: grid;
-  place-items: center;
-  color: var(--green);
-  font-size: 30px;
+.theme-toggle {
+  min-height: 44px;
+  padding: 10px 12px;
+  margin-left: 12px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--white);
+  color: var(--dark-green);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.theme-toggle:focus-visible {
+  outline: 3px solid var(--green);
+  outline-offset: 3px;
 }
 
 /* CARDS */
@@ -135,12 +165,12 @@ textarea {
 input:focus,
 textarea:focus {
   border-color: var(--green);
-  background: white;
+  background: var(--white);
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: #A7B6AA;
+  color: var(--muted);
 }
 
 textarea {
@@ -179,7 +209,7 @@ button {
   border: none;
   border-radius: 14px;
   background: var(--green);
-  color: white;
+  color: var(--button-text);
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
@@ -219,7 +249,7 @@ button {
 
 .backup-actions button:first-child {
   background: var(--green);
-  color: white;
+  color: var(--button-text);
 }
 
 button:disabled {
@@ -234,7 +264,7 @@ button:disabled {
 
 .backup-card .backup-hint {
   font-size: 12px;
-  color: #52745D;
+  color: var(--notes);
 }
 
 #backupStatus {
@@ -243,19 +273,19 @@ button:disabled {
 }
 
 #backupStatus[data-error="true"] {
-  color: #A12B2B;
+  color: var(--error);
 }
 
 [hidden] { display: none !important; }
 
 .average-card {
-  background: var(--dark-green);
+  background: var(--average-background);
   text-align: center;
   padding: 23px 15px;
 }
 
 .average-card p {
-  color: #C1D8C8;
+  color: var(--average-label);
 }
 
 .average-card h2 {
@@ -266,7 +296,7 @@ button:disabled {
 }
 
 .average-card span {
-  color: #C1D8C8;
+  color: var(--average-label);
   font-size: 12px;
 }
 
@@ -311,7 +341,7 @@ textarea {
 
 @media (min-width: 600px) {
   body {
-    padding-top: 35px;
+    padding-top: max(35px, env(safe-area-inset-top));
   }
 }
 
@@ -365,14 +395,14 @@ textarea {
 }
 
 .footer-link.coffee {
-  background: #39865A;
-  color: #FFFFFF;
+  background: var(--green);
+  color: var(--button-text);
 }
 
 .footer-link.email {
-  background: #EAF4EC;
-  color: #245C3C;
-  border: 1px solid #DCE9DE;
+  background: var(--soft-green);
+  color: var(--dark-green);
+  border: 1px solid var(--border);
 }
 
 
@@ -403,15 +433,15 @@ textarea {
 }
 
 .app-footer a.footer-link.coffee {
-  background-color: #39865A !important;
-  color: #FFFFFF !important;
-  border-color: #39865A !important;
+  background-color: var(--green) !important;
+  color: var(--button-text) !important;
+  border-color: var(--green) !important;
 }
 
 .app-footer a.footer-link.email {
-  background-color: #FFFFFF !important;
-  color: #245C3C !important;
-  border-color: #DCE9DE !important;
+  background-color: var(--white) !important;
+  color: var(--dark-green) !important;
+  border-color: var(--border) !important;
 }
 
 .app-footer a.footer-link:hover {

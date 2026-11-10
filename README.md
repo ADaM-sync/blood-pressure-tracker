@@ -28,6 +28,9 @@ Export all readings as a readable JSON file and import it on another device. Imp
 ### 📱 Installable and offline-ready
 Use BP Tracker in your browser or add it to your home screen as a Progressive Web App (PWA). Open it online first so it can cache the app for offline use.
 
+### 🌙 Dark mode
+Use the header toggle to switch between light and dark themes. Your choice is remembered on that device; the first visit follows your system setting.
+
 ## 🛠 Installation
 
 Use **[BP Tracker](https://adam-sync.github.io/blood-pressure-tracker/)** directly in your browser, or install it for quick access.
@@ -38,6 +41,8 @@ Use **[BP Tracker](https://adam-sync.github.io/blood-pressure-tracker/)** direct
 2. Tap the **Share** button.
 3. Select **Add to Home Screen**.
 4. Tap **Add**.
+
+The app includes Apple touch icons and light/dark startup images for common iPhone and iPad screen sizes. Startup images follow the system appearance. If an existing Home Screen icon stays unchanged, export your readings first, then remove the Home Screen app and add it again from Safari. Import your backup if needed. Do not clear website data.
 
 ### Android
 
@@ -70,6 +75,14 @@ Only BP Tracker version 1 backup files are accepted (up to 10 MB / 50,000 readin
 BP Tracker is built around privacy, simplicity, and ownership. A straightforward place to keep your readings without accounts or a cloud database.
 
 Your data stays in the browser and on the device where you enter it. It does not automatically sync between devices. Keep backups of important readings: clearing browser storage may erase your history.
+
+## 📋 Version History
+
+| Version | Changes |
+| --- | --- |
+| Ver 1 | First version. |
+| Ver 2 | Added import and export. |
+| Ver 3 | Added dark mode and fixed the iOS icon; added iOS startup images. |
 
 ## 🧰 Built With
 
